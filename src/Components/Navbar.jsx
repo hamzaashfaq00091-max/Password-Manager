@@ -29,7 +29,7 @@ const Navbar = () => {
         <div className="hidden items-center gap-8 md:flex">
 
           <Link
-            to="/#features"
+            to="/features"
             className="text-sm font-medium text-slate-600 transition hover:text-indigo-600"
           >
             Features

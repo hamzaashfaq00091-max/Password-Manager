@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import Features from "../Features/Features";
 const Home = () => {
   return (
     <main className="min-h-[calc(100vh-64px)] bg-slate-50">
@@ -31,23 +31,23 @@ const Home = () => {
           </p>
 
           {/* Buttons */}
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
 
-            <Link
-              to="/signup"
-              className="rounded-lg bg-indigo-600 px-6 py-3 text-center text-sm font-semibold text-white transition hover:bg-indigo-700"
-            >
-              Get Started →
-            </Link>
+  <Link
+    to="/signup"
+    className="rounded-lg bg-indigo-600 px-6 py-3 text-center text-sm font-semibold text-white transition hover:bg-indigo-700"
+  >
+    Get Started →
+  </Link>
 
-            <a
-              href="#features"
-              className="rounded-lg border border-slate-300 bg-white px-6 py-3 text-center text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
-            >
-              Learn More
-            </a>
+  <Link
+    to="/features"
+    className="rounded-lg border border-slate-300 bg-white px-6 py-3 text-center text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+  >
+    Learn More
+  </Link>
 
-          </div>
+</div>
 
           {/* Security Features */}
           <div className="mt-8 flex flex-wrap gap-6">
