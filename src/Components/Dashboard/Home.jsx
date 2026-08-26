@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Features from "../Features/Features";
 const Home = () => {
   return (
     <main className="min-h-[calc(100vh-64px)] bg-slate-50">
@@ -72,7 +71,7 @@ const Home = () => {
         </div>
 
         {/* Right Illustration */}
-        <div className="relative flex min-h-[460px] items-center justify-center">
+        <div className="relative flex min-h-115 items-center justify-center">
 
           {/* Main Vault Card */}
           <div className="w-full max-w-md rotate-1 rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl shadow-slate-900/10">

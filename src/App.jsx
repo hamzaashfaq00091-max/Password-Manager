@@ -1,9 +1,10 @@
 import './App.css'
-import AppRouter from './Components/Routes/Router'
+import AppRouter from './Components/Route/Router.jsx'
 
 function App() {
   return (
-    <AppRouter />
+ 
+    <AppRouter/>
   )
 }
 
