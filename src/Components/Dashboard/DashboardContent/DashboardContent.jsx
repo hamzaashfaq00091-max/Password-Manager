@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const DashboardContent = () => {
   return (
     <main className="min-h-screen flex-1 bg-slate-50 p-4 sm:p-6 lg:p-8">
@@ -17,12 +17,12 @@ const DashboardContent = () => {
           </p>
         </div>
 
-        <button
-          type="button"
+        <Link
+           to="/add-password"
           className="w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-indigo-700 sm:w-auto"
         >
           + Add Password
-        </button>
+        </Link>
 
       </div>
 

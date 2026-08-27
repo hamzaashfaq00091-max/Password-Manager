@@ -3,13 +3,26 @@ import VaultItem from "../models/VaultItem.js";
 // Add a new vault item
 export const createVaultItem = async (req, res) => {
   try {
-    const { website, username, encryptedPassword, category, favorite } =
-      req.body;
+    const {
+      website,
+      username,
+      encryptedPassword,
+      iv,
+      salt,
+      category,
+      favorite,
+    } = req.body;
+
+    if (!req.userId) {
+      return res.status(401).json({
+        message: "Not authenticated",
+      });
+    }
 
     // Check required fields
-    if (!website || !username || !encryptedPassword) {
+    if (!website || !username || !encryptedPassword || !iv || !salt) {
       return res.status(400).json({
-        message: "Website, username and password are required",
+        message: "Website, username, password, iv, and salt are required",
       });
     }
 
@@ -18,6 +31,8 @@ export const createVaultItem = async (req, res) => {
       website,
       username,
       encryptedPassword,
+      iv,
+      salt,
       category: category || "Other",
       favorite: favorite || false,
     });
@@ -31,6 +46,8 @@ export const createVaultItem = async (req, res) => {
 
     return res.status(500).json({
       message: "Server error",
+      detail: error.message,
+      stack: error.stack,
     });
   }
 };

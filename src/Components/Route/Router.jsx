@@ -1,4 +1,4 @@
-import { Route ,Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 
 import Home from "../Dashboard/Home";
@@ -7,6 +7,7 @@ import Signup from "../Pages/Signup/Signup";
 import Navbar from "../Navbar";
 import Features from "../Features/Features";
 import Dashboard from "../Dashboard/Dashboard/Dashboard";
+import AddPassword from "../AddPassword/AddPassword";
 
 const AppRouter = () => {
   return (
@@ -15,8 +16,11 @@ const AppRouter = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/features" element={<Features />} />
-      <Route path="/dashboard" element={<Dashboard/>} />
-      
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route
+        path="/add-password" element={<AddPassword />}
+      />
+
     </Routes>
   );
 };

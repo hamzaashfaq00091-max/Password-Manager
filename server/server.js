@@ -5,25 +5,21 @@ import cookieParser from "cookie-parser";
 
 import authRoutes from "./routes/authRoutes.js";
 import connectDB from "./config/db.js";
-
-import vaultroutes from "../routes/vaultRoutes.js";
+import vaultRoutes from "./routes/vaultroutes.js";
 
 dotenv.config();
 
 const app = express();
 
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials: true,
+}));
 app.use(cookieParser());
-app.use("/api/vault", vaultroutes);
-
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-    credentials: true,
-  })
-);
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
+app.use("/api/vault", vaultRoutes);
 
 app.get("/", (req, res) => {
   res.json({
