@@ -8,6 +8,7 @@ import Navbar from "../Navbar";
 import Features from "../Features/Features";
 import Dashboard from "../Dashboard/Dashboard/Dashboard";
 import AddPassword from "../AddPassword/AddPassword";
+import Vault from "../Pages/Signup/vault/Vault";
 
 const AppRouter = () => {
   return (
@@ -17,9 +18,12 @@ const AppRouter = () => {
       <Route path="/signup" element={<Signup />} />
       <Route path="/features" element={<Features />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/vault" element={<Vault />} />
       <Route
         path="/add-password" element={<AddPassword />}
       />
+      
+      
 
     </Routes>
   );

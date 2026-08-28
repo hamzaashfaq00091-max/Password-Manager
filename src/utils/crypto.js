@@ -74,10 +74,7 @@ export const deriveKey = async (masterPassword, saltBase64) => {
 
 
 // Encrypt a password
-export const encryptPassword = async (
-  password,
-  masterPassword,
-  saltBase64
+export const encryptPassword = async (password,masterPassword,saltBase64
 ) => {
   const encoder = new TextEncoder();
 

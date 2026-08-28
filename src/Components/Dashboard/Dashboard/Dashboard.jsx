@@ -1,6 +1,6 @@
 import DashboardNavbar from "../DashboardNavbar/DashboardNavbar";
 import Sidebar from "../SideBar/Sidebar";
-import DashboardContent from "../DashboardContent/DashboardContent";
+import RecentPasswords from "../DashboardContent/DashboardContent";
 import { Link } from "react-router-dom";
 
 const Dashboard = () => {
@@ -10,7 +10,7 @@ const Dashboard = () => {
 
       <div className="flex">
         <Sidebar />
-        <DashboardContent />
+        <RecentPasswords />
       </div>
     </div>
   );
