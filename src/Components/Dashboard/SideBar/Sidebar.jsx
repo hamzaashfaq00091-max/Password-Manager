@@ -1,97 +1,54 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
+  const navigationItems = [
+    { to: "/dashboard", label: "Dashboard", icon: "🏠" },
+    { to: "/vault", label: "Vault", icon: "🔐" },
+    { to: "/favorites", label: "Favorites", icon: "⭐" },
+    { to: "/categories", label: "Categories", icon: "📁" },
+    { to: "/settings", label: "Settings", icon: "⚙️" },
+  ];
+
   return (
-    <aside className="flex h-screen w-64 flex-col border-r border-slate-200 bg-white">
-
-      {/* Logo */}
-      {/* <div className="flex h-16 items-center border-b border-slate-200 px-6">
-        <Link
-          to="/dashboard"
-          className="text-xl font-bold tracking-tight text-indigo-600"
-        >
-          Vaultly
-        </Link>
-      </div> */}
-
-      {/* Navigation */}
+    <aside className="flex h-screen w-64 shrink-0 flex-col border-r border-slate-200 bg-white">
       <nav className="flex-1 px-4 py-6">
-
         <ul className="space-y-2">
-
-          {/* Dashboard */}
-          <li>
-            <Link
-              to="/dashboard"
-              className="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-indigo-50 hover:text-indigo-600"
-            >
-              <span>🏠</span>
-              <span>Dashboard</span>
-            </Link>
-          </li>
-
-          {/* Vault */}
-          <li>
-            <Link
-              to="/vault"
-              className="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-indigo-50 hover:text-indigo-600"
-            >
-              <span>🔐</span>
-              <span>Vault</span>
-            </Link>
-          </li>
-
-          {/* Favorites */}
-          <li>
-            <Link
-              to="/favorites"
-              className="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-indigo-50 hover:text-indigo-600"
-            >
-              <span>⭐</span>
-              <span>Favorites</span>
-            </Link>
-          </li>
-
-          {/* Categories */}
-          <li>
-            <Link
-              to="/categories"
-              className="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-indigo-50 hover:text-indigo-600"
-            >
-              <span>📁</span>
-              <span>Categories</span>
-            </Link>
-          </li>
-
-          {/* Settings */}
-          <li>
-            <Link
-              to="/settings"
-              className="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-indigo-50 hover:text-indigo-600"
-            >
-              <span>⚙️</span>
-              <span>Settings</span>
-            </Link>
-          </li>
-
+          {navigationItems.map((item) => (
+            <li key={item.to}>
+              <NavLink
+                to={item.to}
+                className={({ isActive }) =>
+                  `flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition ${
+                    isActive
+                      ? "bg-indigo-50 text-indigo-600"
+                      : "text-slate-700 hover:bg-indigo-50 hover:text-indigo-600"
+                  }`
+                }
+              >
+                <span>{item.icon}</span>
+                <span>{item.label}</span>
+              </NavLink>
+            </li>
+          ))}
         </ul>
-
       </nav>
 
-      {/* Bottom Navigation */}
       <div className="border-t border-slate-200 p-4">
-
-        <Link
+        <NavLink
           to="/profile"
-          className="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-indigo-50 hover:text-indigo-600"
+          className={({ isActive }) =>
+            `flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition ${
+              isActive
+                ? "bg-indigo-50 text-indigo-600"
+                : "text-slate-700 hover:bg-indigo-50 hover:text-indigo-600"
+            }`
+          }
         >
           <span>👤</span>
           <span>Profile</span>
-        </Link>
-
+        </NavLink>
       </div>
-
     </aside>
   );
 };

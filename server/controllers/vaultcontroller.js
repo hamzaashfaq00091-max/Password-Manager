@@ -111,6 +111,8 @@ export const updateVaultItem = async (req, res) => {
       website,
       username,
       encryptedPassword,
+      iv,
+      salt,
       category,
       favorite,
     } = req.body;
@@ -137,6 +139,14 @@ export const updateVaultItem = async (req, res) => {
 
     if (encryptedPassword !== undefined) {
       vaultItem.encryptedPassword = encryptedPassword;
+    }
+
+    if (iv !== undefined) {
+      vaultItem.iv = iv;
+    }
+
+    if (salt !== undefined) {
+      vaultItem.salt = salt;
     }
 
     if (category !== undefined) {

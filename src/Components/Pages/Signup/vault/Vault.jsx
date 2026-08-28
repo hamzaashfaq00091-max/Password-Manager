@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { decryptPassword } from "../../../../utils/crypto";
+import { Link, useSearchParams } from "react-router-dom";
+import { decryptPassword, encryptPassword } from "../../../../utils/crypto";
 
-const Vault = () => {
+const Vault = ({ favoriteOnly = false }) => {
   // =========================
   // Vault State
   // =========================
@@ -45,6 +45,7 @@ const Vault = () => {
 
   const [deletingId, setDeletingId] = useState(null);
   const [deleteError, setDeleteError] = useState("");
+  const [searchParams] = useSearchParams();
 
   // =========================
   // Fetch Vault
@@ -89,7 +90,11 @@ const Vault = () => {
   // =========================
 
   const filteredPasswords = vaultItems.filter((item) => {
-    const searchText = search.toLowerCase().trim();
+    const searchText = (search || searchParams.get("category") || "")
+      .toLowerCase()
+      .trim();
+
+    if (favoriteOnly && !item.favorite) return false;
 
     if (!searchText) return true;
 
@@ -264,6 +269,12 @@ const Vault = () => {
         );
       }
 
+      const encryptedData = await encryptPassword(
+        passwordToSave,
+        editMasterPassword,
+        editingItem.salt
+      );
+
       const response = await fetch(
         `http://localhost:5000/api/vault/${editingItem._id}`,
         {
@@ -276,8 +287,9 @@ const Vault = () => {
             website: editWebsite.trim(),
             username: editUsername.trim(),
             category: editCategory,
-            password: passwordToSave,
-            masterPassword: editMasterPassword,
+            encryptedPassword: encryptedData.encryptedPassword,
+            iv: encryptedData.iv,
+            salt: encryptedData.salt,
           }),
         }
       );
@@ -401,11 +413,13 @@ const Vault = () => {
           </div>
 
           <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">
-            My Vault
+            {favoriteOnly ? "Favorite Passwords" : "My Vault"}
           </h1>
 
           <p className="mt-1 text-sm text-slate-500">
-            Manage all your saved passwords securely.
+            {favoriteOnly
+              ? "Quickly access the accounts you use most."
+              : "Manage all your saved passwords securely."}
           </p>
         </div>
 
