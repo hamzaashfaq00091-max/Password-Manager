@@ -1,8 +1,9 @@
 import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
-const DashboardNavbar = () => {
+const DashboardNavbar = ({ onMenuClick }) => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   const handleLogout = async () => {
     try {
@@ -15,48 +16,40 @@ const DashboardNavbar = () => {
     }
   };
 
-  const navigationItems = [
-    { to: "/dashboard", label: "Dashboard" },
-    { to: "/vault", label: "Vault" },
-    { to: "/favorites", label: "Favorites" },
-    { to: "/categories", label: "Categories" },
-    { to: "/settings", label: "Settings" },
-  ];
+  const pageTitles = {
+    "/dashboard": "Dashboard",
+    "/vault": "My Vault",
+    "/favorites": "Favorites",
+    "/categories": "Categories",
+    "/settings": "Settings",
+    "/profile": "Profile",
+    "/add-password": "Add Password",
+  };
 
   return (
     <nav className="w-full border-b border-slate-200 bg-white">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
 
-        {/* Logo */}
-        <NavLink
-          to="/dashboard"
-          className="text-xl font-bold tracking-tight text-indigo-600"
-        >
-          Vaultly
-        </NavLink>
-
-        {/* Navigation Links */}
-        <div className="hidden items-center gap-8 md:flex">
-
-          {navigationItems.map((item) => (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              className={({ isActive }) =>
-                `text-sm font-medium transition ${
-                  isActive
-                    ? "text-indigo-600"
-                    : "text-slate-700 hover:text-indigo-600"
-                }`
-              }
-            >
-              {item.label}
-            </NavLink>
-          ))}
-
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={onMenuClick}
+            aria-label="Open navigation"
+            className="rounded-lg p-2 text-xl text-slate-600 hover:bg-slate-100 md:hidden"
+          >
+            ☰
+          </button>
+          <NavLink
+            to="/dashboard"
+            className="text-xl font-bold tracking-tight text-indigo-600"
+          >
+            Vaultly
+          </NavLink>
+          <span className="hidden border-l border-slate-200 pl-3 text-sm font-medium text-slate-500 sm:block">
+            {pageTitles[pathname] || "Dashboard"}
+          </span>
         </div>
 
-        {/* Right Side */}
         <div className="flex items-center gap-4">
 
           <NavLink
